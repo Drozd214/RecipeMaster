@@ -3,7 +3,7 @@ package com.oleksandrkarpiuk.recipemaster.di.modules.core.subcomponents.activiti
 import dagger.Module
 
 @Module(
-    includes = [
+    subcomponents = [
         MainComponent::class
     ]
 )
