@@ -3,9 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_height="150dp"
     android:paddingStart="4dp"
-    android:paddingEnd="4dp">
+    android:paddingEnd="4dp"
+    tools:background="#29333D">
 
     <ImageView
         android:id="@+id/imageView"
@@ -28,5 +29,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
-        tools:text="Eggs with chicken"/>
+        tools:text="Eggs \nwith chicken"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,6 +1,5 @@
-package com.oleksandrkarpiuk.recipemaster.ui.main.fragments.home
+package com.oleksandrkarpiuk.recipemaster.ui.main.fragments.home.recycle
 
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.oleksandrkarpiuk.recipemaster.databinding.ItemCategoryBinding
@@ -17,7 +16,7 @@ class CategoriesViewHolder(itemView: ItemCategoryBinding) : RecyclerView.ViewHol
         seeAllButton.text = "SEE ALL"
         with(itemsRecycleView) {
             layoutManager = LinearLayoutManager(itemView.context, LinearLayoutManager.HORIZONTAL, false)
-            adapter = CategoryAdapter(item.items)
+            adapter = RecipeAdapter(item.items)
         }
     }
 

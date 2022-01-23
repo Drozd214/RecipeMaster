@@ -1,4 +1,4 @@
-package com.oleksandrkarpiuk.recipemaster.ui.main.fragments.home
+package com.oleksandrkarpiuk.recipemaster.ui.main.fragments.home.recycle
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,7 +7,7 @@ import com.oleksandrkarpiuk.recipemaster.databinding.ItemCategoryBinding
 import com.oleksandrkarpiuk.recipemaster.models.CategoriesItem
 
 class CategoriesAdapter(
-    private val categories: List<CategoriesItem>
+    var categories: MutableList<CategoriesItem>
 ) : RecyclerView.Adapter<CategoriesViewHolder>() {
 
     private lateinit var binding: ItemCategoryBinding

@@ -2,12 +2,12 @@ package com.oleksandrkarpiuk.recipemaster.ui.main.fragments.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.oleksandrkarpiuk.recipemaster.ui.main.MainViewModel
+import com.oleksandrkarpiuk.recipemaster.data.repositories.recipe.RecipeRepository
 
-class HomeViewModelFactory() : ViewModelProvider.Factory {
+class HomeViewModelFactory(private val recipeRepository: RecipeRepository) : ViewModelProvider.Factory {
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return HomeViewModel() as T
+        return HomeViewModel(recipeRepository) as T
     }
 
 }

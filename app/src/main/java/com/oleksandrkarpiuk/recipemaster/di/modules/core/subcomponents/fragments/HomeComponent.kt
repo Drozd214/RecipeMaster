@@ -1,5 +1,6 @@
 package com.oleksandrkarpiuk.recipemaster.di.modules.core.subcomponents.fragments
 
+import com.oleksandrkarpiuk.recipemaster.data.repositories.recipe.RecipeRepository
 import com.oleksandrkarpiuk.recipemaster.ui.main.fragments.home.HomeFragment
 import com.oleksandrkarpiuk.recipemaster.ui.main.fragments.home.HomeViewModelFactory
 import dagger.BindsInstance
@@ -20,8 +21,8 @@ interface HomeComponent {
     @Module
     object ComponentModule {
         @Provides
-        fun provideHomeViewModelFactory(): HomeViewModelFactory {
-            return HomeViewModelFactory()
+        fun provideHomeViewModelFactory(recipeRepository: RecipeRepository): HomeViewModelFactory {
+            return HomeViewModelFactory(recipeRepository)
         }
     }
 
