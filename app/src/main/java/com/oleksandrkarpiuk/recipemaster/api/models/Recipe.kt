@@ -12,7 +12,7 @@ data class Recipe(
     @field:Json(name = "veryHealthy") val veryHealthy: Boolean,
 
     @field:Json(name = "readyInMinutes") val readyInMinutes: Int,
-    @field:Json(name = "image") val imageUrl: String,
+    @field:Json(name = "image") val imageUrl: String?,
     @field:Json(name = "cuisines") val cuisines: List<String>,
     @field:Json(name = "dishTypes") val dishTypes: List<String>,
     @field:Json(name = "diets") val diets: List<String>,

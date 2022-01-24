@@ -2,8 +2,6 @@ package com.oleksandrkarpiuk.recipemaster.ui.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.widget.Button
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -11,8 +9,6 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.oleksandrkarpiuk.recipemaster.R
 import com.oleksandrkarpiuk.recipemaster.RecipeMasterApplication
-import com.oleksandrkarpiuk.recipemaster.api.recipes.randomrecipe.RandomRecipeApi
-import kotlinx.coroutines.*
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
