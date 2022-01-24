@@ -10,14 +10,21 @@ class CategoriesViewHolder(itemView: ItemCategoryBinding) : RecyclerView.ViewHol
     private val nameView = itemView.nameTextView
     private val seeAllButton = itemView.seeAllButton
     private val itemsRecycleView = itemView.recycleView
+    private lateinit var itemsAdapter: RecipeAdapter
+
+    fun init() {
+        with(itemsRecycleView) {
+            layoutManager = LinearLayoutManager(itemView.context, LinearLayoutManager.HORIZONTAL, false)
+            adapter = RecipeAdapter(listOf()).also {
+                itemsAdapter = it
+            }
+        }
+    }
 
     fun bind(item: CategoriesItem) {
         nameView.text = item.name
         seeAllButton.text = "SEE ALL"
-        with(itemsRecycleView) {
-            layoutManager = LinearLayoutManager(itemView.context, LinearLayoutManager.HORIZONTAL, false)
-            adapter = RecipeAdapter(item.items)
-        }
+        itemsAdapter.changeItems(item.items)
     }
 
 }

@@ -14,7 +14,7 @@ class CategoriesAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoriesViewHolder {
         binding = ItemCategoryBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return CategoriesViewHolder(binding)
+        return CategoriesViewHolder(binding).apply { this.init() }
     }
 
     override fun onBindViewHolder(holder: CategoriesViewHolder, position: Int) {

@@ -7,7 +7,7 @@ import com.oleksandrkarpiuk.recipemaster.databinding.ItemRecipeBinding
 import com.oleksandrkarpiuk.recipemaster.models.RecipeItem
 
 class RecipeAdapter(
-    private val recipeItems: List<RecipeItem>
+    private var recipeItems: List<RecipeItem>
 ) : RecyclerView.Adapter<RecipeViewHolder>() {
 
     private lateinit var binding: ItemRecipeBinding
@@ -25,4 +25,8 @@ class RecipeAdapter(
         return recipeItems.count()
     }
 
+    fun changeItems(items: List<RecipeItem>) {
+        recipeItems = items
+        this.notifyDataSetChanged()
+    }
 }

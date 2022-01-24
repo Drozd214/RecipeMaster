@@ -1,6 +1,7 @@
 package com.oleksandrkarpiuk.recipemaster.ui.main.fragments.home
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -29,6 +30,11 @@ class HomeFragment() : Fragment() {
 
     private lateinit var categoriesAdapter: CategoriesAdapter
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        inject()
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -39,7 +45,6 @@ class HomeFragment() : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        inject()
         super.onViewCreated(view, savedInstanceState)
         initViews()
         initData()

@@ -5,6 +5,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.github.michaelbull.result.Ok
+import com.oleksandrkarpiuk.recipemaster.api.models.Recipe
 import com.oleksandrkarpiuk.recipemaster.api.models.toRecipeItem
 import com.oleksandrkarpiuk.recipemaster.data.repositories.recipe.RecipeRepository
 import com.oleksandrkarpiuk.recipemaster.models.*
@@ -67,7 +69,7 @@ class HomeViewModel(
 
     private val cuisines = mutableListOf<RecipeItem>().apply {
         for(cuisine in Cuisine.values()) {
-            add(RecipeItem(cuisine.imageUrl, cuisine.title))
+            if(cuisine.isVisibleInCategory) add(RecipeItem(cuisine.imageUrl, cuisine.title))
         }
     }
 
@@ -117,14 +119,9 @@ class HomeViewModel(
     private suspend fun loadRecipes(tag: String): List<RecipeItem> {
         val recipes = CoroutineScope(Dispatchers.IO).async {
             val result = recipeRepository.getRandomRecipes(categoryRecipesNumber, tag)
-            return@async if(result.component1() != null) {
-                val recipes = result.component1()
-                val items = mutableListOf<RecipeItem>().apply {
-                    for(recipe in recipes!!) {
-                        add(recipe.toRecipeItem())
-                    }
-                }
-                items
+            return@async if(result is Ok) {
+                val recipes = result.value
+                recipes.map(Recipe::toRecipeItem)
             } else {
                 withContext(Dispatchers.Main) { _error.value = "Something went wrong" }
                 listOf()
