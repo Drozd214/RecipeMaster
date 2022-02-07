@@ -81,38 +81,38 @@ class HomeViewModel(
 
     init {
         _categories.value = mutableListOf<CategoriesItem>().apply {
-            add(CategoriesItem("Diets", diets))
-            add(CategoriesItem("Cuisines", cuisines))
-            add(CategoriesItem("Meal Types", mealTypes))
-            add(CategoriesItem(Diet.DAIRY_FREE.title, listOf()))
-            add(CategoriesItem(Diet.PRIMAL.title, listOf()))
-            add(CategoriesItem(MealType.LUNCH.title, listOf()))
-            add(CategoriesItem(MealType.MAIN_DISH.title, listOf()))
-            add(CategoriesItem(MealType.SIDE_DISH.title, listOf()))
-            add(CategoriesItem(MealType.SOUP.title, listOf()))
-            add(CategoriesItem(MealType.DESSERT.title, listOf()))
-            add(CategoriesItem(Cuisine.CHINESE.title, listOf()))
-            add(CategoriesItem(Cuisine.FRENCH.title, listOf()))
-            add(CategoriesItem(Cuisine.ITALIAN.title, listOf()))
-            add(CategoriesItem(Cuisine.MEDITERRANEAN.title, listOf()))
-            add(CategoriesItem(Cuisine.SOUTHERN.title, listOf()))
+            add(CategoriesItem("Diets", diets, "diets"))
+            add(CategoriesItem("Cuisines", cuisines, "cuisines"))
+            add(CategoriesItem("Meal Types", mealTypes, "mealTypes"))
+            add(CategoriesItem(Diet.DAIRY_FREE.title, listOf(), Diet.DAIRY_FREE.tag))
+            add(CategoriesItem(Diet.PRIMAL.title, listOf(), Diet.PRIMAL.tag))
+            add(CategoriesItem(MealType.LUNCH.title, listOf(), MealType.LUNCH.tag))
+            add(CategoriesItem(MealType.MAIN_DISH.title, listOf(), MealType.MAIN_DISH.tag))
+            add(CategoriesItem(MealType.SIDE_DISH.title, listOf(), MealType.SIDE_DISH.tag))
+            add(CategoriesItem(MealType.SOUP.title, listOf(), MealType.SOUP.tag))
+            add(CategoriesItem(MealType.DESSERT.title, listOf(), MealType.DESSERT.tag))
+            add(CategoriesItem(Cuisine.CHINESE.title, listOf(), Cuisine.CHINESE.tag))
+            add(CategoriesItem(Cuisine.FRENCH.title, listOf(), Cuisine.FRENCH.tag))
+            add(CategoriesItem(Cuisine.ITALIAN.title, listOf(), Cuisine.ITALIAN.tag))
+            add(CategoriesItem(Cuisine.MEDITERRANEAN.title, listOf(), Cuisine.MEDITERRANEAN.tag))
+            add(CategoriesItem(Cuisine.SOUTHERN.title, listOf(), Cuisine.SOUTHERN.tag))
         }
     }
 
     fun init() {
         viewModelScope.launch {
-            _dairyFreeDietRecipes.value = CategoriesItem(Diet.DAIRY_FREE.title, loadRecipes(Diet.DAIRY_FREE.tag))
-            _primalDietRecipes.value = CategoriesItem(Diet.PRIMAL.title, loadRecipes(Diet.PRIMAL.tag))
-            _lunchRecipes.value = CategoriesItem(MealType.LUNCH.title, loadRecipes(MealType.LUNCH.tag))
-            _mainDishesRecipes.value = CategoriesItem(MealType.MAIN_DISH.title, loadRecipes(MealType.MAIN_DISH.tag))
-            _sideDishesRecipes.value = CategoriesItem(MealType.SIDE_DISH.title, loadRecipes(MealType.SIDE_DISH.tag))
-            _soupsRecipes.value = CategoriesItem(MealType.SOUP.title, loadRecipes(MealType.SOUP.tag))
-            _dessertsRecipes.value = CategoriesItem(MealType.DESSERT.title, loadRecipes(MealType.DESSERT.tag))
-            _chineseRecipes.value = CategoriesItem(Cuisine.CHINESE.title, loadRecipes(Cuisine.CHINESE.tag))
-            _frenchRecipes.value = CategoriesItem(Cuisine.FRENCH.title, loadRecipes(Cuisine.FRENCH.tag))
-            _italianRecipes.value = CategoriesItem(Cuisine.ITALIAN.title, loadRecipes(Cuisine.ITALIAN.tag))
-            _mediterraneanRecipes.value = CategoriesItem(Cuisine.MEDITERRANEAN.title, loadRecipes(Cuisine.MEDITERRANEAN.tag))
-            _southernRecipes.value = CategoriesItem(Cuisine.SOUTHERN.title, loadRecipes(Cuisine.SOUTHERN.tag))
+            _dairyFreeDietRecipes.value = CategoriesItem(Diet.DAIRY_FREE.title, loadRecipes(Diet.DAIRY_FREE.tag), Diet.DAIRY_FREE.tag)
+            _primalDietRecipes.value = CategoriesItem(Diet.PRIMAL.title, loadRecipes(Diet.PRIMAL.tag), Diet.PRIMAL.tag)
+            _lunchRecipes.value = CategoriesItem(MealType.LUNCH.title, loadRecipes(MealType.LUNCH.tag), MealType.LUNCH.tag)
+            _mainDishesRecipes.value = CategoriesItem(MealType.MAIN_DISH.title, loadRecipes(MealType.MAIN_DISH.tag), MealType.MAIN_DISH.tag)
+            _sideDishesRecipes.value = CategoriesItem(MealType.SIDE_DISH.title, loadRecipes(MealType.SIDE_DISH.tag), MealType.SIDE_DISH.tag)
+            _soupsRecipes.value = CategoriesItem(MealType.SOUP.title, loadRecipes(MealType.SOUP.tag), MealType.SOUP.tag)
+            _dessertsRecipes.value = CategoriesItem(MealType.DESSERT.title, loadRecipes(MealType.DESSERT.tag), MealType.DESSERT.tag)
+            _chineseRecipes.value = CategoriesItem(Cuisine.CHINESE.title, loadRecipes(Cuisine.CHINESE.tag), Cuisine.CHINESE.tag)
+            _frenchRecipes.value = CategoriesItem(Cuisine.FRENCH.title, loadRecipes(Cuisine.FRENCH.tag), Cuisine.FRENCH.tag)
+            _italianRecipes.value = CategoriesItem(Cuisine.ITALIAN.title, loadRecipes(Cuisine.ITALIAN.tag), Cuisine.ITALIAN.tag)
+            _mediterraneanRecipes.value = CategoriesItem(Cuisine.MEDITERRANEAN.title, loadRecipes(Cuisine.MEDITERRANEAN.tag), Cuisine.MEDITERRANEAN.tag)
+            _southernRecipes.value = CategoriesItem(Cuisine.SOUTHERN.title, loadRecipes(Cuisine.SOUTHERN.tag), Cuisine.SOUTHERN.tag)
         }
     }
 
@@ -128,5 +128,9 @@ class HomeViewModel(
             }
         }
         return recipes.await()
+    }
+
+    fun onSeeAllButtonClicked(categoriesItem: CategoriesItem) {
+
     }
 }

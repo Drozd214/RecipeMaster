@@ -21,9 +21,13 @@ class CategoriesViewHolder(itemView: ItemCategoryBinding) : RecyclerView.ViewHol
         }
     }
 
-    fun bind(item: CategoriesItem) {
+    fun bind(
+        item: CategoriesItem,
+        seeAllClickedListener: ((CategoriesItem) -> Unit)?
+    ) {
         nameView.text = item.name
         seeAllButton.text = "SEE ALL"
+        seeAllButton.setOnClickListener { seeAllClickedListener?.invoke(item) }
         itemsAdapter.changeItems(item.items)
     }
 

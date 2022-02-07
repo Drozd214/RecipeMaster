@@ -10,6 +10,8 @@ class CategoriesAdapter(
     var categories: MutableList<CategoriesItem>
 ) : RecyclerView.Adapter<CategoriesViewHolder>() {
 
+    var onSeeAllButtonCLicked: ((CategoriesItem) -> Unit)? = null
+
     private lateinit var binding: ItemCategoryBinding
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoriesViewHolder {
@@ -18,7 +20,7 @@ class CategoriesAdapter(
     }
 
     override fun onBindViewHolder(holder: CategoriesViewHolder, position: Int) {
-        holder.bind(categories[position])
+        holder.bind(categories[position], onSeeAllButtonCLicked)
     }
 
     override fun getItemCount(): Int {

@@ -1,5 +1,6 @@
 package com.oleksandrkarpiuk.recipemaster.ui.main.fragments.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -20,6 +21,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import com.oleksandrkarpiuk.recipemaster.api.models.toRecipeItem
 import com.oleksandrkarpiuk.recipemaster.models.MealType
 import com.oleksandrkarpiuk.recipemaster.ui.main.fragments.home.recycle.CategoriesAdapter
+import com.oleksandrkarpiuk.recipemaster.ui.recipes.RecipesActivity
 
 class HomeFragment() : Fragment() {
 
@@ -62,7 +64,12 @@ class HomeFragment() : Fragment() {
     private fun initViews() {
         with(binding.categoriesRecycleView) {
             layoutManager = LinearLayoutManager(requireContext())
-            adapter = CategoriesAdapter(mutableListOf()).also {
+            adapter = CategoriesAdapter(mutableListOf()).apply {
+                onSeeAllButtonCLicked = { categoriesItem ->
+                    viewModel.onSeeAllButtonClicked(categoriesItem)
+                    startActivity(Intent(requireContext(), RecipesActivity::class.java).putExtra("Category", categoriesItem))
+                }
+            }.also {
                 categoriesAdapter = it
             }
 
