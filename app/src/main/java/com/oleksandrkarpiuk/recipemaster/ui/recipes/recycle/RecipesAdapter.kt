@@ -1,10 +1,8 @@
 package com.oleksandrkarpiuk.recipemaster.ui.recipes.recycle
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.oleksandrkarpiuk.recipemaster.R
 import com.oleksandrkarpiuk.recipemaster.databinding.ItemCategoryRecipeBinding
 import com.oleksandrkarpiuk.recipemaster.models.RecipeItem
 

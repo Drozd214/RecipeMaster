@@ -22,13 +22,13 @@
         android:id="@+id/see_all_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="@string/see_all"
         android:textColor="@android:color/holo_red_dark"
         android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/name_textView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="SEE ALL" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycle_view"

@@ -7,7 +7,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.oleksandrkarpiuk.recipemaster.databinding.ItemRecipeBinding
 import com.oleksandrkarpiuk.recipemaster.models.RecipeItem
 
-class RecipeViewHolder(itemView: ItemRecipeBinding) : RecyclerView.ViewHolder(itemView.root) {
+class HomeRecipesViewHolder(itemView: ItemRecipeBinding) : RecyclerView.ViewHolder(itemView.root) {
 
     private val imageView = itemView.imageView
     private val nameView = itemView.nameTextView

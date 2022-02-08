@@ -3,6 +3,7 @@ package com.oleksandrkarpiuk.recipemaster.di.modules.core.subcomponents.activiti
 import com.oleksandrkarpiuk.recipemaster.data.repositories.recipe.RecipeRepository
 import com.oleksandrkarpiuk.recipemaster.ui.recipes.RecipesActivity
 import com.oleksandrkarpiuk.recipemaster.ui.recipes.RecipesViewModelFactory
+import com.oleksandrkarpiuk.recipemaster.utils.StringProvider
 import dagger.BindsInstance
 import dagger.Module
 import dagger.Provides
@@ -21,8 +22,11 @@ interface RecipesComponent {
     @Module
     object ComponentModule {
         @Provides
-        fun provideRecipesViewModelFactory(recipeRepository: RecipeRepository): RecipesViewModelFactory {
-            return RecipesViewModelFactory(recipeRepository)
+        fun provideRecipesViewModelFactory(
+            recipeRepository: RecipeRepository,
+            stringProvider: StringProvider
+        ): RecipesViewModelFactory {
+            return RecipesViewModelFactory(recipeRepository, stringProvider)
         }
     }
 

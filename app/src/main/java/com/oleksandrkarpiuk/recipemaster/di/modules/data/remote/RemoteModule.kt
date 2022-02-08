@@ -1,7 +1,7 @@
 package com.oleksandrkarpiuk.recipemaster.di.modules.data.remote
 
 import com.oleksandrkarpiuk.recipemaster.api.SpoonacularApi
-import com.oleksandrkarpiuk.recipemaster.api.recipes.randomrecipe.RandomRecipeApi
+import com.oleksandrkarpiuk.recipemaster.api.recipes.randomrecipes.RandomRecipesApi
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
@@ -22,8 +22,8 @@ object RemoteModule {
 
     @Singleton
     @Provides
-    fun provideRandomRecipeApi(retrofit: Retrofit): RandomRecipeApi {
-        return retrofit.create(RandomRecipeApi::class.java)
+    fun provideRandomRecipesApi(retrofit: Retrofit): RandomRecipesApi {
+        return retrofit.create(RandomRecipesApi::class.java)
     }
 
 }

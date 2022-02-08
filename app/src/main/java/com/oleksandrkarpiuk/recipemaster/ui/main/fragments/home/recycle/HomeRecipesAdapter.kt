@@ -6,18 +6,18 @@ import androidx.recyclerview.widget.RecyclerView
 import com.oleksandrkarpiuk.recipemaster.databinding.ItemRecipeBinding
 import com.oleksandrkarpiuk.recipemaster.models.RecipeItem
 
-class RecipeAdapter(
+class HomeRecipesAdapter(
     private var recipeItems: List<RecipeItem>
-) : RecyclerView.Adapter<RecipeViewHolder>() {
+) : RecyclerView.Adapter<HomeRecipesViewHolder>() {
 
     private lateinit var binding: ItemRecipeBinding
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecipeViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeRecipesViewHolder {
         binding = ItemRecipeBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return RecipeViewHolder(binding)
+        return HomeRecipesViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: RecipeViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: HomeRecipesViewHolder, position: Int) {
         holder.bind(recipeItems[position])
     }
 

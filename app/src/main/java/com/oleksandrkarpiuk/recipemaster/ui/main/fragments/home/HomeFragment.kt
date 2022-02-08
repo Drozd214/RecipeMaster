@@ -2,7 +2,6 @@ package com.oleksandrkarpiuk.recipemaster.ui.main.fragments.home
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,30 +11,22 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.oleksandrkarpiuk.recipemaster.RecipeMasterApplication
 import com.oleksandrkarpiuk.recipemaster.databinding.FragmentHomeBinding
-import com.oleksandrkarpiuk.recipemaster.models.CategoriesItem
-import com.oleksandrkarpiuk.recipemaster.models.RecipeItem
+import com.oleksandrkarpiuk.recipemaster.models.HomeCategoryItem
 import javax.inject.Inject
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
-import com.oleksandrkarpiuk.recipemaster.api.models.toRecipeItem
-import com.oleksandrkarpiuk.recipemaster.models.MealType
+import com.oleksandrkarpiuk.recipemaster.ui.base.BaseFragment
 import com.oleksandrkarpiuk.recipemaster.ui.main.fragments.home.recycle.CategoriesAdapter
 import com.oleksandrkarpiuk.recipemaster.ui.recipes.RecipesActivity
 
-class HomeFragment() : Fragment() {
+class HomeFragment : BaseFragment() {
 
     private lateinit var binding: FragmentHomeBinding
-
     private lateinit var viewModel: HomeViewModel
     @Inject lateinit var factory: HomeViewModelFactory
 
     private lateinit var categoriesAdapter: CategoriesAdapter
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        inject()
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -46,14 +37,7 @@ class HomeFragment() : Fragment() {
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        initViews()
-        initData()
-        initObservers()
-    }
-
-    private fun inject() {
+    override fun inject() {
         (requireContext().applicationContext as RecipeMasterApplication)
             .getComponent()
             .createHomeComponent()
@@ -61,30 +45,30 @@ class HomeFragment() : Fragment() {
             .inject(this)
     }
 
-    private fun initViews() {
-        with(binding.categoriesRecycleView) {
-            layoutManager = LinearLayoutManager(requireContext())
-            adapter = CategoriesAdapter(mutableListOf()).apply {
-                onSeeAllButtonCLicked = { categoriesItem ->
-                    viewModel.onSeeAllButtonClicked(categoriesItem)
-                    startActivity(Intent(requireContext(), RecipesActivity::class.java).putExtra("Category", categoriesItem))
-                }
-            }.also {
-                categoriesAdapter = it
-            }
-
-            val itemDecorator = DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL)
-            itemDecorator.setDrawable(ContextCompat.getDrawable(requireContext(), com.oleksandrkarpiuk.recipemaster.R.drawable.divider_categories)!!)
-            addItemDecoration(itemDecorator)
-        }
-    }
-
-    private fun initData() {
+    override fun initData() {
         viewModel = ViewModelProviders.of(this, factory).get(HomeViewModel::class.java)
-        viewModel.init()
     }
 
-    private fun initObservers() {
+    override fun initViews() {
+        initCategoriesRecycleView()
+    }
+
+    private fun initCategoriesRecycleView() = with(binding.categoriesRecycleView) {
+        layoutManager = LinearLayoutManager(requireContext())
+        adapter = CategoriesAdapter(mutableListOf()).apply {
+            onSeeAllButtonCLicked = { categoriesItem ->
+                startActivity(Intent(requireContext(), RecipesActivity::class.java).putExtra("Category", categoriesItem))
+            }
+        }.also {
+            categoriesAdapter = it
+        }
+
+        val itemDecorator = DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL)
+        itemDecorator.setDrawable(ContextCompat.getDrawable(requireContext(), com.oleksandrkarpiuk.recipemaster.R.drawable.divider_categories)!!)
+        addItemDecoration(itemDecorator)
+    }
+
+    override fun initObservers() {
         viewModel.categories.observe(this, Observer { categories ->
             categoriesAdapter.categories = categories.toMutableList()
             categoriesAdapter.notifyDataSetChanged()
@@ -108,7 +92,7 @@ class HomeFragment() : Fragment() {
         })
     }
 
-    private fun notifyItemChanges(category: CategoriesItem) {
+    private fun notifyItemChanges(category: HomeCategoryItem) {
         val categoryPosition = categoriesAdapter.categories.indexOf(categoriesAdapter.categories.find { it.name == category.name})
         categoriesAdapter.categories[categoryPosition] = category
         categoriesAdapter.notifyItemChanged(categoryPosition)

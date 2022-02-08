@@ -21,8 +21,8 @@ interface MainComponent {
     @Module
     object ComponentModule {
         @Provides
-        fun provideMainViewModelFactory(recipeRepository: RecipeRepository): MainViewModelFactory {
-            return MainViewModelFactory(recipeRepository)
+        fun provideMainViewModelFactory(): MainViewModelFactory {
+            return MainViewModelFactory()
         }
     }
 

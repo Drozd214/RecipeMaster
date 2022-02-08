@@ -1,3 +1,60 @@
 <resources>
     <string name="app_name">RecipeMaster</string>
+
+    <!--Categories-->
+    <string name="diets">Diets</string>
+    <string name="cuisines">Cuisines</string>
+    <string name="meal_types">Meal types</string>
+
+    <!--Cuisines-->
+    <string name="american">American</string>
+    <string name="asian">Asian</string>
+    <string name="british">British</string>
+    <string name="cajun">Cajun</string>
+    <string name="chinese">Chinese</string>
+    <string name="european">European</string>
+    <string name="french">French</string>
+    <string name="indian">Indian</string>
+    <string name="irish">Irish</string>
+    <string name="italian">Italian</string>
+    <string name="mediterranean">Mediterranean</string>
+    <string name="southern">Southern</string>
+
+    <!--Diets-->
+    <string name="dairy_free">Dairy free</string>
+    <string name="gluten_free">Gluten free</string>
+    <string name="ketogenic">Ketogenic</string>
+    <string name="lacto_ovo_vegetarian">Lacto-ovo-vegetarian</string>
+    <string name="paleolithic">Paleolithic</string>
+    <string name="pescatarian">Pescatarian</string>
+    <string name="primal">Primal</string>
+    <string name="vegan">Vegan</string>
+    <string name="vegetarian">Vegetarian</string>
+
+    <!--Meal types-->
+    <string name="breakfast">Breakfast</string>
+    <string name="brunch">Brunch</string>
+    <string name="lunch">Lunch</string>
+    <string name="dinner">Dinner</string>
+    <string name="antipasti">Antipasti</string>
+    <string name="appetizer">Appetizer</string>
+    <string name="bread">Bread</string>
+    <string name="dessert">Dessert</string>
+    <string name="drink">Drink</string>
+    <string name="main_course">Main course</string>
+    <string name="main_dish">Main dish</string>
+    <string name="salad">Salad</string>
+    <string name="sauce">Sauce</string>
+    <string name="side_dish">Side dish</string>
+    <string name="snack">Snack</string>
+    <string name="soup">Soup</string>
+    <string name="starter">Starter</string>
+
+    <string name="unknown_error">Something went wrong</string>
+    <string name="see_all">SEE ALL</string>
+
+    <string name="profile">Profile</string>
+    <string name="home">Home</string>
+    <string name="favourites">Favourites</string>
+
 </resources>

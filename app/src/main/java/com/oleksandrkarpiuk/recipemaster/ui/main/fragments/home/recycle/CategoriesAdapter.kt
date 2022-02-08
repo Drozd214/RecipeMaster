@@ -4,13 +4,13 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.oleksandrkarpiuk.recipemaster.databinding.ItemCategoryBinding
-import com.oleksandrkarpiuk.recipemaster.models.CategoriesItem
+import com.oleksandrkarpiuk.recipemaster.models.HomeCategoryItem
 
 class CategoriesAdapter(
-    var categories: MutableList<CategoriesItem>
+    var categories: MutableList<HomeCategoryItem>
 ) : RecyclerView.Adapter<CategoriesViewHolder>() {
 
-    var onSeeAllButtonCLicked: ((CategoriesItem) -> Unit)? = null
+    var onSeeAllButtonCLicked: ((HomeCategoryItem) -> Unit)? = null
 
     private lateinit var binding: ItemCategoryBinding
 

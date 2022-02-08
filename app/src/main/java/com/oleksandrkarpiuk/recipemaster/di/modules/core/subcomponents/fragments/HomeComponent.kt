@@ -3,6 +3,7 @@ package com.oleksandrkarpiuk.recipemaster.di.modules.core.subcomponents.fragment
 import com.oleksandrkarpiuk.recipemaster.data.repositories.recipe.RecipeRepository
 import com.oleksandrkarpiuk.recipemaster.ui.main.fragments.home.HomeFragment
 import com.oleksandrkarpiuk.recipemaster.ui.main.fragments.home.HomeViewModelFactory
+import com.oleksandrkarpiuk.recipemaster.utils.StringProvider
 import dagger.BindsInstance
 import dagger.Module
 import dagger.Provides
@@ -21,8 +22,11 @@ interface HomeComponent {
     @Module
     object ComponentModule {
         @Provides
-        fun provideHomeViewModelFactory(recipeRepository: RecipeRepository): HomeViewModelFactory {
-            return HomeViewModelFactory(recipeRepository)
+        fun provideHomeViewModelFactory(
+            recipeRepository: RecipeRepository,
+            stringProvider: StringProvider
+        ): HomeViewModelFactory {
+            return HomeViewModelFactory(recipeRepository, stringProvider)
         }
     }
 
