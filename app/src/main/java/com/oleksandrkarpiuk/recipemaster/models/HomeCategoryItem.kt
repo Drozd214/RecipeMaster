@@ -4,6 +4,6 @@ import java.io.Serializable
 
 class HomeCategoryItem(
     val name: String,
-    val items: List<RecipeItem>,
+    val items: List<BaseRecipeItem>,
     val tag: String
 ) : Serializable

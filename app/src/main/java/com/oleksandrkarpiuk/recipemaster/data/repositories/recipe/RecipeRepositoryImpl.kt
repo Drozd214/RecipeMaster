@@ -21,21 +21,21 @@ class RecipeRepositoryImpl(
     }
 
     override fun getHomeCategories(): List<HomeCategoryItem> {
-        val diets = mutableListOf<RecipeItem>().apply {
+        val diets = mutableListOf<CategoryItem>().apply {
             for(diet in Diet.values()) {
-                if(diet.isVisibleInCategory) add(RecipeItem(diet.imageUrl, stringProvider.getString(diet.titleId)))
+                if(diet.isVisibleInCategory) add(CategoryItem(diet.imageUrl, stringProvider.getString(diet.titleId), diet.tag))
             }
         }
 
-        val cuisines = mutableListOf<RecipeItem>().apply {
+        val cuisines = mutableListOf<CategoryItem>().apply {
             for(cuisine in Cuisine.values()) {
-                if(cuisine.isVisibleInCategory) add(RecipeItem(cuisine.imageUrl, stringProvider.getString(cuisine.titleId)))
+                if(cuisine.isVisibleInCategory) add(CategoryItem(cuisine.imageUrl, stringProvider.getString(cuisine.titleId), cuisine.tag))
             }
         }
 
-        val mealTypes = mutableListOf<RecipeItem>().apply {
+        val mealTypes = mutableListOf<CategoryItem>().apply {
             for(mealType in MealType.values()) {
-                if(mealType.isVisibleInCategory) add(RecipeItem(mealType.imageUrl, stringProvider.getString(mealType.titleId)))
+                if(mealType.isVisibleInCategory) add(CategoryItem(mealType.imageUrl, stringProvider.getString(mealType.titleId), mealType.tag))
             }
         }
 

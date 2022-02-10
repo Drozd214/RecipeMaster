@@ -8,7 +8,7 @@
     android:padding="8dp">
 
     <ImageView
-        android:id="@+id/recipe_imageView"
+        android:id="@+id/imageView"
         android:layout_width="0dp"
         android:layout_height="120dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -17,7 +17,7 @@
         tools:src="@tools:sample/backgrounds/scenic" />
 
     <TextView
-        android:id="@+id/recipe_name_textView"
+        android:id="@+id/name_textView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
@@ -25,14 +25,14 @@
         android:gravity="center"
         android:maxLines="2"
         android:textColor="@color/white"
-        app:layout_constraintBottom_toTopOf="@+id/recipe_score_TextView"
-        app:layout_constraintEnd_toEndOf="@+id/recipe_imageView"
-        app:layout_constraintStart_toStartOf="@+id/recipe_imageView"
-        app:layout_constraintTop_toBottomOf="@+id/recipe_imageView"
+        app:layout_constraintBottom_toTopOf="@+id/score_TextView"
+        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
         tools:text="Some long and strange name for specific recipe" />
 
     <TextView
-        android:id="@+id/recipe_score_TextView"
+        android:id="@+id/score_TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:drawablePadding="2dp"
@@ -41,12 +41,12 @@
         android:textSize="11sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/recipe_imageView"
+        app:layout_constraintStart_toStartOf="@+id/imageView"
         app:drawableStartCompat="@drawable/icon_trophy_score"
         tools:text="85%" />
 
     <TextView
-        android:id="@+id/recipe_servings_textView"
+        android:id="@+id/servings_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:drawablePadding="2dp"
@@ -54,14 +54,14 @@
         android:textColor="@color/white"
         android:textSize="11sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/recipe_imageView"
-        app:layout_constraintStart_toStartOf="@+id/recipe_imageView"
-        app:layout_constraintTop_toTopOf="@+id/recipe_score_TextView"
+        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/score_TextView"
         app:drawableStartCompat="@drawable/icon_servings"
         tools:text="4" />
 
     <TextView
-        android:id="@+id/recipe_time_textView"
+        android:id="@+id/time_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:drawablePadding="2dp"
@@ -69,8 +69,8 @@
         android:textColor="@color/white"
         android:textSize="11sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/recipe_imageView"
-        app:layout_constraintTop_toTopOf="@+id/recipe_score_TextView"
+        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/score_TextView"
         app:drawableStartCompat="@drawable/icon_time"
         tools:text="1h 45m" />
 

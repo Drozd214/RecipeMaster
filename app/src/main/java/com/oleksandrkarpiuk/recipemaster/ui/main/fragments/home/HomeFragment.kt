@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.oleksandrkarpiuk.recipemaster.RecipeMasterApplication
@@ -16,9 +15,12 @@ import javax.inject.Inject
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
+import com.oleksandrkarpiuk.recipemaster.RecipeActivity
+import com.oleksandrkarpiuk.recipemaster.models.CategoryItem
+import com.oleksandrkarpiuk.recipemaster.models.RecipeItem
 import com.oleksandrkarpiuk.recipemaster.ui.base.BaseFragment
 import com.oleksandrkarpiuk.recipemaster.ui.main.fragments.home.recycle.CategoriesAdapter
-import com.oleksandrkarpiuk.recipemaster.ui.recipes.RecipesActivity
+import com.oleksandrkarpiuk.recipemaster.ui.recipes.RecipesContainerActivity
 
 class HomeFragment : BaseFragment() {
 
@@ -57,7 +59,26 @@ class HomeFragment : BaseFragment() {
         layoutManager = LinearLayoutManager(requireContext())
         adapter = CategoriesAdapter(mutableListOf()).apply {
             onSeeAllButtonCLicked = { categoriesItem ->
-                startActivity(Intent(requireContext(), RecipesActivity::class.java).putExtra("Category", categoriesItem))
+                startActivity(Intent(requireContext(), RecipesContainerActivity::class.java).apply {
+                    putExtra("TITLE", categoriesItem.name)
+                    putExtra("TAG", categoriesItem.tag)
+                })
+            }
+            onItemClicked = { baseRecipeItem ->
+                when(baseRecipeItem) {
+                    is RecipeItem -> {
+                        startActivity(Intent(requireContext(), RecipeActivity::class.java).apply {
+                            putExtra("tagOrId", baseRecipeItem.id.toString())
+                        })
+                    }
+                    is CategoryItem -> {
+                        startActivity(Intent(requireContext(), RecipesContainerActivity::class.java).apply {
+                            putExtra("TITLE", baseRecipeItem.name)
+                            putExtra("TAG", baseRecipeItem.tag)
+                        })
+                    }
+                    else -> ""
+                }
             }
         }.also {
             categoriesAdapter = it

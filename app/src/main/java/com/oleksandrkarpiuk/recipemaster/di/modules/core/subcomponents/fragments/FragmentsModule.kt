@@ -4,7 +4,8 @@ import dagger.Module
 
 @Module(
     subcomponents = [
-        HomeComponent::class
+        HomeComponent::class,
+        RecipesComponent::class
     ]
 )
 object FragmentsModule

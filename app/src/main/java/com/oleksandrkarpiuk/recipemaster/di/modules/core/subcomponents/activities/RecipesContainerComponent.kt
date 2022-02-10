@@ -1,22 +1,22 @@
 package com.oleksandrkarpiuk.recipemaster.di.modules.core.subcomponents.activities
 
 import com.oleksandrkarpiuk.recipemaster.data.repositories.recipe.RecipeRepository
-import com.oleksandrkarpiuk.recipemaster.ui.recipes.RecipesActivity
-import com.oleksandrkarpiuk.recipemaster.ui.recipes.RecipesViewModelFactory
+import com.oleksandrkarpiuk.recipemaster.ui.recipes.RecipesContainerActivity
+import com.oleksandrkarpiuk.recipemaster.ui.recipes.RecipesContainerViewModelFactory
 import com.oleksandrkarpiuk.recipemaster.utils.StringProvider
 import dagger.BindsInstance
 import dagger.Module
 import dagger.Provides
 import dagger.Subcomponent
 
-@Subcomponent(modules = [RecipesComponent.ComponentModule::class])
-interface RecipesComponent {
+@Subcomponent(modules = [RecipesContainerComponent.ComponentModule::class])
+interface RecipesContainerComponent {
 
-    fun inject(activity: RecipesActivity)
+    fun inject(activity: RecipesContainerActivity)
 
     @Subcomponent.Factory
     interface Factory {
-        fun create(@BindsInstance activity: RecipesActivity): RecipesComponent
+        fun create(@BindsInstance activity: RecipesContainerActivity): RecipesContainerComponent
     }
 
     @Module
@@ -25,8 +25,8 @@ interface RecipesComponent {
         fun provideRecipesViewModelFactory(
             recipeRepository: RecipeRepository,
             stringProvider: StringProvider
-        ): RecipesViewModelFactory {
-            return RecipesViewModelFactory(recipeRepository, stringProvider)
+        ): RecipesContainerViewModelFactory {
+            return RecipesContainerViewModelFactory(recipeRepository, stringProvider)
         }
     }
 

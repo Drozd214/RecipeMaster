@@ -1,14 +1,12 @@
 package com.oleksandrkarpiuk.recipemaster.models.categories
 
-import android.content.Context
 import com.oleksandrkarpiuk.recipemaster.R
-import com.oleksandrkarpiuk.recipemaster.models.RecipeItem
 import com.oleksandrkarpiuk.recipemaster.utils.MealTypeRecipesImage
 import com.oleksandrkarpiuk.recipemaster.utils.SpoonacularTags
 
 enum class MealType(
     override val titleId: Int,
-    val tag: String,
+    override val tag: String,
     override val imageUrl: String,
     val isVisibleInCategory: Boolean
 ) : BaseCategory {

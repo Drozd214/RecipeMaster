@@ -10,6 +10,9 @@ import com.oleksandrkarpiuk.recipemaster.api.models.Recipe
 import com.oleksandrkarpiuk.recipemaster.api.models.toRecipeItem
 import com.oleksandrkarpiuk.recipemaster.data.repositories.recipe.RecipeRepository
 import com.oleksandrkarpiuk.recipemaster.models.*
+import com.oleksandrkarpiuk.recipemaster.models.categories.Cuisine
+import com.oleksandrkarpiuk.recipemaster.models.categories.Diet
+import com.oleksandrkarpiuk.recipemaster.models.categories.MealType
 import com.oleksandrkarpiuk.recipemaster.utils.SpoonacularTags
 import com.oleksandrkarpiuk.recipemaster.utils.StringProvider
 import kotlinx.coroutines.*
@@ -54,8 +57,8 @@ class HomeViewModel(
     init {
         _categories.value = recipeRepository.getHomeCategories()
         viewModelScope.launch {
-//            _dairyFreeDietRecipes.value = HomeCategoryItem(stringProvider.getString(Diet.DAIRY_FREE.titleId), loadRecipes(Diet.DAIRY_FREE.tag), Diet.DAIRY_FREE.tag)
-//            _primalDietRecipes.value = HomeCategoryItem(stringProvider.getString(Diet.PRIMAL.titleId), loadRecipes(Diet.PRIMAL.tag), Diet.PRIMAL.tag)
+            _dairyFreeDietRecipes.value = HomeCategoryItem(stringProvider.getString(Diet.DAIRY_FREE.titleId), loadRecipes(Diet.DAIRY_FREE.tag), Diet.DAIRY_FREE.tag)
+            _primalDietRecipes.value = HomeCategoryItem(stringProvider.getString(Diet.PRIMAL.titleId), loadRecipes(Diet.PRIMAL.tag), Diet.PRIMAL.tag)
 //            _lunchRecipes.value = HomeCategoryItem(stringProvider.getString(MealType.LUNCH.titleId), loadRecipes(MealType.LUNCH.tag), MealType.LUNCH.tag)
 //            _mainDishesRecipes.value = HomeCategoryItem(stringProvider.getString(MealType.MAIN_DISH.titleId), loadRecipes(MealType.MAIN_DISH.tag), MealType.MAIN_DISH.tag)
 //            _sideDishesRecipes.value = HomeCategoryItem(stringProvider.getString(MealType.SIDE_DISH.titleId), loadRecipes(MealType.SIDE_DISH.tag), MealType.SIDE_DISH.tag)

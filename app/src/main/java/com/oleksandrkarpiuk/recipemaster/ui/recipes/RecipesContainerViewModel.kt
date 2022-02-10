@@ -21,33 +21,34 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class RecipesViewModel(
+class RecipesContainerViewModel(
     private val recipeRepository: RecipeRepository,
     private val stringProvider: StringProvider
 ) : ViewModel() {
 
-    private var _recipes: MutableLiveData<List<RecipeItem>> = MutableLiveData()
-    val recipes: LiveData<List<RecipeItem>> = _recipes
-    var isCategory: Boolean = true
+    private var _recipes: MutableLiveData<List<BaseRecipeItem>> = MutableLiveData()
+    private var _title: MutableLiveData<String> = MutableLiveData("")
 
-    fun init(categoryItem: HomeCategoryItem) {
+    val recipes: LiveData<List<BaseRecipeItem>> = _recipes
+    val title: LiveData<String> = _title
+
+    fun init(tag: String) {
         viewModelScope.launch {
-            _recipes.value = when (categoryItem.tag) {
+            _recipes.value = when (tag) {
                 SpoonacularTags.DIETS -> { getCategories(Diet.values().toList()) }
                 SpoonacularTags.CUISINES -> { getCategories(Cuisine.values().toList())}
                 SpoonacularTags.MEAL_TYPES -> { getCategories(MealType.values().toList()) }
                 else -> {
-                    isCategory = false
-                    downloadRecipesFromApi(categoryItem.tag)
+                    downloadRecipesFromApi(tag)
                 }
             }
         }
     }
 
-    private fun <T: BaseCategory> getCategories(categories: List<T>): List<RecipeItem> {
-        return mutableListOf<RecipeItem>().apply {
-            for (mealType in categories) {
-                add(RecipeItem(mealType.imageUrl, stringProvider.getString(mealType.titleId)))
+    private fun <T: BaseCategory> getCategories(categories: List<T>): List<CategoryItem> {
+        return mutableListOf<CategoryItem>().apply {
+            for (category in categories) {
+                add(CategoryItem(category.imageUrl, stringProvider.getString(category.titleId), category.tag))
             }
         }
     }
@@ -59,6 +60,10 @@ class RecipesViewModel(
         } else {
             listOf()
         }
+    }
+
+    fun changeTitle(title: String) {
+        _title.value = title
     }
 
 }
