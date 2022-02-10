@@ -1,6 +1,7 @@
 package com.oleksandrkarpiuk.recipemaster.ui.recipes
 
 import android.view.LayoutInflater
+import android.view.MenuItem
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.oleksandrkarpiuk.recipemaster.RecipeMasterApplication
@@ -32,6 +33,7 @@ class RecipesContainerActivity : BaseActivity() {
         binding = ActivityRecipesContainerBinding.inflate(LayoutInflater.from(this))
         setContentView(binding.root)
         viewModel = ViewModelProviders.of(this, factory).get(RecipesContainerViewModel::class.java)
+        actionBar?.setDisplayHomeAsUpEnabled(true);
     }
 
     override fun initData() {
@@ -59,6 +61,13 @@ class RecipesContainerActivity : BaseActivity() {
     override fun onBackPressed() {
         super.onBackPressed()
         title = previousTitle
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return if(item.itemId == android.R.id.home) {
+            onBackPressed()
+            true
+        } else super.onOptionsItemSelected(item)
     }
 
 }

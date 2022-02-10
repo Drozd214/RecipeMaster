@@ -18,6 +18,7 @@
             android:screenOrientation="portrait"/>
         <activity
             android:name=".ui.recipes.RecipesContainerActivity"
+            android:parentActivityName=".ui.main.MainActivity"
             android:exported="true"
             android:screenOrientation="portrait" />
         <activity

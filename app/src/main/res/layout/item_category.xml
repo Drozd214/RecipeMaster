@@ -23,7 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/see_all"
-        android:textColor="@android:color/holo_red_dark"
+        android:textColor="@color/see_all_color"
         android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/name_textView"

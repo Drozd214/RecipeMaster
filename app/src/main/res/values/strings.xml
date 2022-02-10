@@ -51,7 +51,7 @@
     <string name="starter">Starter</string>
 
     <string name="unknown_error">Something went wrong</string>
-    <string name="see_all">SEE ALL</string>
+    <string name="see_all"><b>SEE ALL</b></string>
 
     <string name="profile">Profile</string>
     <string name="home">Home</string>
