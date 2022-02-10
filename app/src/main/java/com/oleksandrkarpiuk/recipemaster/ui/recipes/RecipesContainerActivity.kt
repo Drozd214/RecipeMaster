@@ -11,6 +11,8 @@ import javax.inject.Inject
 
 class RecipesContainerActivity : BaseActivity() {
 
+    companion object;
+
     private lateinit var binding: ActivityRecipesContainerBinding
     private lateinit var viewModel: RecipesContainerViewModel
     @Inject lateinit var factory: RecipesContainerViewModelFactory
@@ -19,7 +21,7 @@ class RecipesContainerActivity : BaseActivity() {
 
     override fun inject() {
         (applicationContext as RecipeMasterApplication).getComponent()
-            .createRecipesComponent()
+            .createRecipesContainerComponent()
             .create(this)
             .inject(this)
     }
@@ -34,21 +36,17 @@ class RecipesContainerActivity : BaseActivity() {
     override fun initData() {
         super.initData()
         //TODO via navigation component
-        viewModel.changeTitle(intent.extras?.getSerializable("TITLE") as String)
-        val tag = intent.extras?.getSerializable("TAG") as String
-        viewModel.init(tag)
+        val extras = extractExtras(intent)
+        viewModel.refreshRecipes(extras.title, extras.tag)
     }
 
     override fun initObservers() {
         super.initObservers()
         viewModel.recipes.observe(this, Observer {
-            val fragment = RecipesFragment(it)
             val transaction = supportFragmentManager.beginTransaction()
-                .replace(binding.fragmentContainer.id,fragment)
-
             if(isFragmentExist) transaction.addToBackStack(null)
             else isFragmentExist = true
-            transaction.commit()
+            transaction.replace(binding.fragmentContainer.id,RecipesFragment(it)).commit()
         })
 
         viewModel.title.observe(this, Observer {

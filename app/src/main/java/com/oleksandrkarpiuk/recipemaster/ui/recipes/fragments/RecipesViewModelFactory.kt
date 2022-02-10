@@ -6,13 +6,10 @@ import com.oleksandrkarpiuk.recipemaster.data.repositories.recipe.RecipeReposito
 import com.oleksandrkarpiuk.recipemaster.ui.recipes.RecipesContainerViewModel
 import com.oleksandrkarpiuk.recipemaster.utils.StringProvider
 
-class RecipesViewModelFactory(
-    private val recipesRepository: RecipeRepository,
-    private val stringProvider: StringProvider
-) : ViewModelProvider.Factory {
+class RecipesViewModelFactory : ViewModelProvider.Factory {
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return RecipesViewModel(recipesRepository, stringProvider) as T
+        return RecipesViewModel() as T
     }
 
 }

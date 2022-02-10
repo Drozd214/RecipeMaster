@@ -21,6 +21,7 @@ import com.oleksandrkarpiuk.recipemaster.models.RecipeItem
 import com.oleksandrkarpiuk.recipemaster.ui.base.BaseFragment
 import com.oleksandrkarpiuk.recipemaster.ui.main.fragments.home.recycle.CategoriesAdapter
 import com.oleksandrkarpiuk.recipemaster.ui.recipes.RecipesContainerActivity
+import com.oleksandrkarpiuk.recipemaster.ui.recipes.newInstance
 
 class HomeFragment : BaseFragment() {
 
@@ -47,11 +48,13 @@ class HomeFragment : BaseFragment() {
             .inject(this)
     }
 
-    override fun initData() {
+    override fun preInit() {
+        super.preInit()
         viewModel = ViewModelProviders.of(this, factory).get(HomeViewModel::class.java)
     }
 
     override fun initViews() {
+        super.initViews()
         initCategoriesRecycleView()
     }
 
@@ -59,10 +62,7 @@ class HomeFragment : BaseFragment() {
         layoutManager = LinearLayoutManager(requireContext())
         adapter = CategoriesAdapter(mutableListOf()).apply {
             onSeeAllButtonCLicked = { categoriesItem ->
-                startActivity(Intent(requireContext(), RecipesContainerActivity::class.java).apply {
-                    putExtra("TITLE", categoriesItem.name)
-                    putExtra("TAG", categoriesItem.tag)
-                })
+                launchRecipesActivity(categoriesItem.name, categoriesItem.tag)
             }
             onItemClicked = { baseRecipeItem ->
                 when(baseRecipeItem) {
@@ -71,13 +71,8 @@ class HomeFragment : BaseFragment() {
                             putExtra("tagOrId", baseRecipeItem.id.toString())
                         })
                     }
-                    is CategoryItem -> {
-                        startActivity(Intent(requireContext(), RecipesContainerActivity::class.java).apply {
-                            putExtra("TITLE", baseRecipeItem.name)
-                            putExtra("TAG", baseRecipeItem.tag)
-                        })
-                    }
-                    else -> ""
+                    is CategoryItem -> launchRecipesActivity(baseRecipeItem.name, baseRecipeItem.tag)
+                    else -> { }
                 }
             }
         }.also {
@@ -87,6 +82,10 @@ class HomeFragment : BaseFragment() {
         val itemDecorator = DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL)
         itemDecorator.setDrawable(ContextCompat.getDrawable(requireContext(), com.oleksandrkarpiuk.recipemaster.R.drawable.divider_categories)!!)
         addItemDecoration(itemDecorator)
+    }
+
+    private fun launchRecipesActivity(title: String, tag: String) {
+        startActivity(RecipesContainerActivity.newInstance(requireContext(), title, tag))
     }
 
     override fun initObservers() {

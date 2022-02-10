@@ -19,7 +19,7 @@ class RecipesViewHolder(itemView: ItemRecipeBinding) : RecyclerView.ViewHolder(i
 
     fun bind(
         item: BaseRecipeItem,
-        itemClickedListener: ((BaseRecipeItem) -> Unit)?
+        itemClickListener: ((BaseRecipeItem) -> Unit)?
     ) {
         Glide.with(image)
             .load(item.imageUrl)
@@ -36,7 +36,7 @@ class RecipesViewHolder(itemView: ItemRecipeBinding) : RecyclerView.ViewHolder(i
             time.visibility = View.GONE
         }
 
-        itemView.setOnClickListener { itemClickedListener?.invoke(item) }
+        itemView.setOnClickListener { itemClickListener?.invoke(item) }
     }
 
     private fun getTime(timeInMinutes: Int): String {

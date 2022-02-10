@@ -2,7 +2,6 @@ package com.oleksandrkarpiuk.recipemaster.ui.main.fragments.home.recycle
 
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.oleksandrkarpiuk.recipemaster.R
 import com.oleksandrkarpiuk.recipemaster.databinding.ItemCategoryBinding
 import com.oleksandrkarpiuk.recipemaster.models.BaseRecipeItem
 import com.oleksandrkarpiuk.recipemaster.models.HomeCategoryItem
@@ -15,13 +14,13 @@ class CategoriesViewHolder(itemView: ItemCategoryBinding) : RecyclerView.ViewHol
     private lateinit var itemsAdapter: HomeRecipesAdapter
 
     fun init(
-        itemCLickedListener: ((BaseRecipeItem) -> Unit)?
+        itemCLickListener: ((BaseRecipeItem) -> Unit)?
     ) {
         with(itemsRecycleView) {
             layoutManager = LinearLayoutManager(itemView.context, LinearLayoutManager.HORIZONTAL, false)
             adapter = HomeRecipesAdapter(listOf()).apply {
                 onItemClicked = { baseRecipeItem ->
-                    itemCLickedListener?.invoke(baseRecipeItem)
+                    itemCLickListener?.invoke(baseRecipeItem)
                 }
             }.also {
                 itemsAdapter = it
@@ -31,10 +30,10 @@ class CategoriesViewHolder(itemView: ItemCategoryBinding) : RecyclerView.ViewHol
 
     fun bind(
         item: HomeCategoryItem,
-        seeAllClickedListener: ((HomeCategoryItem) -> Unit)?
+        seeAllClickListener: ((HomeCategoryItem) -> Unit)?
     ) {
         nameView.text = item.name
-        seeAllButton.setOnClickListener { seeAllClickedListener?.invoke(item) }
+        seeAllButton.setOnClickListener { seeAllClickListener?.invoke(item) }
         itemsAdapter.changeItems(item.items)
     }
 

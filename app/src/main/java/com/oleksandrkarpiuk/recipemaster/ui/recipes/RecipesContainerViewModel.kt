@@ -32,7 +32,7 @@ class RecipesContainerViewModel(
     val recipes: LiveData<List<BaseRecipeItem>> = _recipes
     val title: LiveData<String> = _title
 
-    fun init(tag: String) {
+    fun refreshRecipes(title: String, tag: String) {
         viewModelScope.launch {
             _recipes.value = when (tag) {
                 SpoonacularTags.DIETS -> { getCategories(Diet.values().toList()) }
@@ -42,6 +42,7 @@ class RecipesContainerViewModel(
                     downloadRecipesFromApi(tag)
                 }
             }
+            changeTitle(title)
         }
     }
 

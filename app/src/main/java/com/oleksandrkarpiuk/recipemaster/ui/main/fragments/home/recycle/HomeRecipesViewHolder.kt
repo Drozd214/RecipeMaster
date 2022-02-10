@@ -15,7 +15,7 @@ class HomeRecipesViewHolder(itemView: ItemHomeRecipeBinding) : RecyclerView.View
 
     fun bind(
         item: BaseRecipeItem,
-        itemCLickedListener: ((BaseRecipeItem) -> Unit)? = null
+        itemCLickListener: ((BaseRecipeItem) -> Unit)? = null
     ) {
         item.imageUrl?.let {
             Glide.with(itemView)
@@ -24,7 +24,7 @@ class HomeRecipesViewHolder(itemView: ItemHomeRecipeBinding) : RecyclerView.View
                 .into(imageView)
         }
         nameView.text = item.name
-        itemView.setOnClickListener { itemCLickedListener?.invoke(item) }
+        itemView.setOnClickListener { itemCLickListener?.invoke(item) }
 
     }
 

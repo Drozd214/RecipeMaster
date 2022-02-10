@@ -1,6 +1,5 @@
 package com.oleksandrkarpiuk.recipemaster.di.modules.core.subcomponents.activities
 
-import com.oleksandrkarpiuk.recipemaster.data.repositories.recipe.RecipeRepository
 import com.oleksandrkarpiuk.recipemaster.ui.main.MainActivity
 import com.oleksandrkarpiuk.recipemaster.ui.main.MainViewModelFactory
 import dagger.BindsInstance

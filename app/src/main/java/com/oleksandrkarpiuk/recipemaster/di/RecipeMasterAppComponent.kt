@@ -5,6 +5,7 @@ import com.oleksandrkarpiuk.recipemaster.di.modules.core.CoreModule
 import com.oleksandrkarpiuk.recipemaster.di.modules.core.subcomponents.activities.MainComponent
 import com.oleksandrkarpiuk.recipemaster.di.modules.core.subcomponents.activities.RecipesContainerComponent
 import com.oleksandrkarpiuk.recipemaster.di.modules.core.subcomponents.fragments.HomeComponent
+import com.oleksandrkarpiuk.recipemaster.di.modules.core.subcomponents.fragments.RecipesComponent
 import com.oleksandrkarpiuk.recipemaster.di.modules.data.DataModule
 import dagger.BindsInstance
 import dagger.Component
@@ -25,8 +26,9 @@ interface RecipeMasterAppComponent {
     }
 
     fun createMainComponent(): MainComponent.Factory
-    fun createRecipesComponent(): RecipesContainerComponent.Factory
+    fun createRecipesContainerComponent(): RecipesContainerComponent.Factory
 
     fun createHomeComponent(): HomeComponent.Factory
+    fun createRecipesComponent(): RecipesComponent.Factory
 
 }
