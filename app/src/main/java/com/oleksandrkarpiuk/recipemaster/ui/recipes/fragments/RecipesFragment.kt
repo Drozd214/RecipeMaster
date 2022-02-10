@@ -32,7 +32,6 @@ class RecipesFragment(
     private lateinit var viewModel: RecipesViewModel
     @Inject lateinit var factory: RecipesViewModelFactory
 
-    private lateinit var title: String
     private lateinit var recipesAdapter: RecipesAdapter
 
     override fun onCreateView(
@@ -60,7 +59,6 @@ class RecipesFragment(
     override fun initViews() {
         super.initViews()
         initRecycleView()
-        title = parentViewModel.title.value ?: ""
     }
 
     private fun initRecycleView() = with(binding.recipesRecycleView) {
@@ -86,11 +84,6 @@ class RecipesFragment(
         verticalItemDecorator.setDrawable(ContextCompat.getDrawable(context, com.oleksandrkarpiuk.recipemaster.R.drawable.divider_recipes)!!)
         addItemDecoration(horizontalItemDecorator)
         addItemDecoration(verticalItemDecorator)
-    }
-
-    override fun onResume() {
-        super.onResume()
-        parentViewModel.changeTitle(title)
     }
 
 }

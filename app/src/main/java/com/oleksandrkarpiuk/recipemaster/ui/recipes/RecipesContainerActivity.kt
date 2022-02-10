@@ -18,6 +18,7 @@ class RecipesContainerActivity : BaseActivity() {
     @Inject lateinit var factory: RecipesContainerViewModelFactory
 
     private var isFragmentExist = false
+    private var previousTitle = ""
 
     override fun inject() {
         (applicationContext as RecipeMasterApplication).getComponent()
@@ -50,8 +51,14 @@ class RecipesContainerActivity : BaseActivity() {
         })
 
         viewModel.title.observe(this, Observer {
+            if(previousTitle.isEmpty()) previousTitle = it
             title = it
         })
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        title = previousTitle
     }
 
 }
