@@ -2,7 +2,6 @@ package com.oleksandrkarpiuk.recipemaster.ui.main
 
 import android.view.LayoutInflater
 import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -36,14 +35,9 @@ class MainActivity : BaseActivity() {
 
     override fun initViews() {
         super.initViews()
-        val host: NavHostFragment = supportFragmentManager.findFragmentById(R.id.fragment_container) as NavHostFragment? ?: return
-        val navController = host.navController
-        setUpBottomNav(navController)
-    }
-
-    private fun setUpBottomNav(navController: NavController) {
-        val bottomNav = findViewById<BottomNavigationView>(R.id.bottom_navigation_view)
-        bottomNav?.setupWithNavController(navController)
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragment_container) as NavHostFragment
+        val navController = navHostFragment.navController
+        findViewById<BottomNavigationView>(R.id.bottom_navigation_view).setupWithNavController(navController)
     }
 
 }
