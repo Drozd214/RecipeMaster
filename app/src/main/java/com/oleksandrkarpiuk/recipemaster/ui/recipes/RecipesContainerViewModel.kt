@@ -28,11 +28,15 @@ class RecipesContainerViewModel(
 
     private var _recipes: MutableLiveData<List<BaseRecipeItem>> = MutableLiveData()
     private var _title: MutableLiveData<String> = MutableLiveData("")
+    private var _inLoading: MutableLiveData<Boolean> = MutableLiveData(false)
 
     val recipes: LiveData<List<BaseRecipeItem>> = _recipes
     val title: LiveData<String> = _title
+    val inLoading: LiveData<Boolean> = _inLoading
 
     fun refreshRecipes(title: String, tag: String) {
+        if(inLoading.value!!) return
+        _inLoading.value = true
         viewModelScope.launch {
             _recipes.value = when (tag) {
                 SpoonacularTags.DIETS -> { getCategories(Diet.values().toList()) }
@@ -43,6 +47,7 @@ class RecipesContainerViewModel(
                 }
             }
             changeTitle(title)
+            _inLoading.value = false
         }
     }
 

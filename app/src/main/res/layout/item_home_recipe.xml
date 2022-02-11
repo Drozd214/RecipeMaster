@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:paddingStart="4dp"
     android:paddingEnd="4dp"
-    tools:background="#29333D">
+    tools:background="@color/item_background">
 
     <ImageView
         android:id="@+id/imageView"

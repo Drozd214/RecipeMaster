@@ -1,5 +1,6 @@
 package com.oleksandrkarpiuk.recipemaster.ui.main.fragments.home.recycle
 
+import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.oleksandrkarpiuk.recipemaster.databinding.ItemCategoryBinding
@@ -11,6 +12,7 @@ class CategoriesViewHolder(itemView: ItemCategoryBinding) : RecyclerView.ViewHol
     private val nameView = itemView.nameTextView
     private val seeAllButton = itemView.seeAllButton
     private val itemsRecycleView = itemView.recycleView
+    private val progressBar = itemView.progressBar
     private lateinit var itemsAdapter: HomeRecipesAdapter
 
     fun init(
@@ -32,6 +34,8 @@ class CategoriesViewHolder(itemView: ItemCategoryBinding) : RecyclerView.ViewHol
         item: HomeCategoryItem,
         seeAllClickListener: ((HomeCategoryItem) -> Unit)?
     ) {
+        if(item.items.isNullOrEmpty()) progressBar.visibility = View.VISIBLE
+        else progressBar.visibility = View.GONE
         nameView.text = item.name
         seeAllButton.setOnClickListener { seeAllClickListener?.invoke(item) }
         itemsAdapter.changeItems(item.items)

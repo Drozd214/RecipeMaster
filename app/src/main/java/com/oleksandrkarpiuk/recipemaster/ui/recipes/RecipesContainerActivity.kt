@@ -2,6 +2,7 @@ package com.oleksandrkarpiuk.recipemaster.ui.recipes
 
 import android.view.LayoutInflater
 import android.view.MenuItem
+import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.oleksandrkarpiuk.recipemaster.RecipeMasterApplication
@@ -55,6 +56,11 @@ class RecipesContainerActivity : BaseActivity() {
         viewModel.title.observe(this, Observer {
             if(previousTitle.isEmpty()) previousTitle = it
             title = it
+        })
+
+        viewModel.inLoading.observe(this, Observer { inLoading ->
+            if(inLoading) binding.progressBar.visibility = View.VISIBLE
+            else binding.progressBar.visibility = View.GONE
         })
     }
 
