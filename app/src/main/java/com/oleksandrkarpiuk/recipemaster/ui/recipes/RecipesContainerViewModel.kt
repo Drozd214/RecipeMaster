@@ -1,14 +1,13 @@
 package com.oleksandrkarpiuk.recipemaster.ui.recipes
 
-import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.github.michaelbull.result.Ok
 import com.oleksandrkarpiuk.recipemaster.api.models.Recipe
-import com.oleksandrkarpiuk.recipemaster.api.models.toRecipeItem
 import com.oleksandrkarpiuk.recipemaster.data.repositories.recipe.RecipeRepository
+import com.oleksandrkarpiuk.recipemaster.mapping.toRecipeItem
 import com.oleksandrkarpiuk.recipemaster.models.*
 import com.oleksandrkarpiuk.recipemaster.models.categories.BaseCategory
 import com.oleksandrkarpiuk.recipemaster.models.categories.Cuisine
@@ -16,10 +15,7 @@ import com.oleksandrkarpiuk.recipemaster.models.categories.Diet
 import com.oleksandrkarpiuk.recipemaster.models.categories.MealType
 import com.oleksandrkarpiuk.recipemaster.utils.SpoonacularTags
 import com.oleksandrkarpiuk.recipemaster.utils.StringProvider
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class RecipesContainerViewModel(
     private val recipeRepository: RecipeRepository,
@@ -68,7 +64,7 @@ class RecipesContainerViewModel(
         }
     }
 
-    fun changeTitle(title: String) {
+    private fun changeTitle(title: String) {
         _title.value = title
     }
 
