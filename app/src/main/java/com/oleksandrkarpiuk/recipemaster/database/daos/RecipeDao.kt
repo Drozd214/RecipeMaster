@@ -4,18 +4,18 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.oleksandrkarpiuk.recipemaster.database.models.RecipeDatabase
+import com.oleksandrkarpiuk.recipemaster.database.models.RecipeDatabaseModel
 
 @Dao
 interface RecipeDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertRecipe(recipe: RecipeDatabase)
+    fun insertRecipe(recipe: RecipeDatabaseModel)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertRecipes(recipes: List<RecipeDatabase>)
+    fun insertRecipes(recipes: List<RecipeDatabaseModel>)
 
-    @Query("SELECT * FROM ${RecipeDatabase.TABLE_NAME} WHERE :id == id")
-    fun getRecipeById(id: Int): RecipeDatabase?
+    @Query("SELECT * FROM ${RecipeDatabaseModel.TABLE_NAME} WHERE :id == id")
+    fun getRecipeById(id: Int): RecipeDatabaseModel?
 
 }

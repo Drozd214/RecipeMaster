@@ -3,6 +3,7 @@ package com.oleksandrkarpiuk.recipemaster.di
 import android.content.Context
 import com.oleksandrkarpiuk.recipemaster.di.modules.core.CoreModule
 import com.oleksandrkarpiuk.recipemaster.di.modules.core.subcomponents.activities.MainComponent
+import com.oleksandrkarpiuk.recipemaster.di.modules.core.subcomponents.activities.RecipeComponent
 import com.oleksandrkarpiuk.recipemaster.di.modules.core.subcomponents.activities.RecipesContainerComponent
 import com.oleksandrkarpiuk.recipemaster.di.modules.core.subcomponents.fragments.HomeComponent
 import com.oleksandrkarpiuk.recipemaster.di.modules.core.subcomponents.fragments.RecipesComponent
@@ -27,6 +28,7 @@ interface RecipeMasterAppComponent {
 
     fun createMainComponent(): MainComponent.Factory
     fun createRecipesContainerComponent(): RecipesContainerComponent.Factory
+    fun createRecipeComponent(): RecipeComponent.Factory
 
     fun createHomeComponent(): HomeComponent.Factory
     fun createRecipesComponent(): RecipesComponent.Factory

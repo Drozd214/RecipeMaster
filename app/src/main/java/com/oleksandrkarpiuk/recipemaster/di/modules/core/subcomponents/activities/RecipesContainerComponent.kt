@@ -1,6 +1,7 @@
 package com.oleksandrkarpiuk.recipemaster.di.modules.core.subcomponents.activities
 
 import com.oleksandrkarpiuk.recipemaster.data.repositories.recipe.RecipeRepository
+import com.oleksandrkarpiuk.recipemaster.mapping.recipe.RecipeItemMapper
 import com.oleksandrkarpiuk.recipemaster.ui.recipes.RecipesContainerActivity
 import com.oleksandrkarpiuk.recipemaster.ui.recipes.RecipesContainerViewModelFactory
 import com.oleksandrkarpiuk.recipemaster.utils.StringProvider
@@ -24,9 +25,10 @@ interface RecipesContainerComponent {
         @Provides
         fun provideRecipesViewModelFactory(
             recipeRepository: RecipeRepository,
-            stringProvider: StringProvider
+            stringProvider: StringProvider,
+            recipeItemMapper: RecipeItemMapper
         ): RecipesContainerViewModelFactory {
-            return RecipesContainerViewModelFactory(recipeRepository, stringProvider)
+            return RecipesContainerViewModelFactory(recipeRepository, stringProvider, recipeItemMapper)
         }
     }
 

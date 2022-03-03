@@ -5,21 +5,23 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.github.michaelbull.result.Ok
-import com.oleksandrkarpiuk.recipemaster.api.models.Recipe
 import com.oleksandrkarpiuk.recipemaster.data.repositories.recipe.RecipeRepository
-import com.oleksandrkarpiuk.recipemaster.mapping.toRecipeItem
-import com.oleksandrkarpiuk.recipemaster.models.*
+import com.oleksandrkarpiuk.recipemaster.mapping.recipe.RecipeItemMapper
 import com.oleksandrkarpiuk.recipemaster.models.categories.BaseCategory
 import com.oleksandrkarpiuk.recipemaster.models.categories.Cuisine
 import com.oleksandrkarpiuk.recipemaster.models.categories.Diet
 import com.oleksandrkarpiuk.recipemaster.models.categories.MealType
+import com.oleksandrkarpiuk.recipemaster.models.recipes.BaseRecipeItem
+import com.oleksandrkarpiuk.recipemaster.models.recipes.CategoryItem
+import com.oleksandrkarpiuk.recipemaster.models.recipes.RecipeItemModel
 import com.oleksandrkarpiuk.recipemaster.utils.SpoonacularTags
 import com.oleksandrkarpiuk.recipemaster.utils.StringProvider
 import kotlinx.coroutines.launch
 
 class RecipesContainerViewModel(
     private val recipeRepository: RecipeRepository,
-    private val stringProvider: StringProvider
+    private val stringProvider: StringProvider,
+    private val recipeItemMapper: RecipeItemMapper
 ) : ViewModel() {
 
     private var _recipes: MutableLiveData<List<BaseRecipeItem>> = MutableLiveData()
@@ -55,10 +57,10 @@ class RecipesContainerViewModel(
         }
     }
 
-    private suspend fun downloadRecipesFromApi(tag: String): List<RecipeItem> {
+    private suspend fun downloadRecipesFromApi(tag: String): List<RecipeItemModel> {
         val result = recipeRepository.getRandomRecipes(100, tag)
         return if(result is Ok) {
-            result.value.map(Recipe::toRecipeItem)
+            result.value.map(recipeItemMapper::mapFromDomainToItem)
         } else {
             listOf()
         }

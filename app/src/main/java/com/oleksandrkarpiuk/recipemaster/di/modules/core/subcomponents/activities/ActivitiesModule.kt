@@ -5,7 +5,8 @@ import dagger.Module
 @Module(
     subcomponents = [
         MainComponent::class,
-        RecipesContainerComponent::class
+        RecipesContainerComponent::class,
+        RecipeComponent::class
     ]
 )
 object ActivitiesModule

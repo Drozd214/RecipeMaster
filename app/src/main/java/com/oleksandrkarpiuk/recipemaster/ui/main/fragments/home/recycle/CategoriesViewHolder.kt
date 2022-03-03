@@ -4,7 +4,7 @@ import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.oleksandrkarpiuk.recipemaster.databinding.ItemCategoryBinding
-import com.oleksandrkarpiuk.recipemaster.models.BaseRecipeItem
+import com.oleksandrkarpiuk.recipemaster.models.recipes.BaseRecipeItem
 import com.oleksandrkarpiuk.recipemaster.models.HomeCategoryItem
 
 class CategoriesViewHolder(itemView: ItemCategoryBinding) : RecyclerView.ViewHolder(itemView.root) {

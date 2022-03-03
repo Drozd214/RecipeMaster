@@ -4,39 +4,44 @@ import com.github.michaelbull.result.Err
 import com.github.michaelbull.result.Ok
 import com.github.michaelbull.result.Result
 import com.oleksandrkarpiuk.recipemaster.R
-import com.oleksandrkarpiuk.recipemaster.api.models.Recipe
+import com.oleksandrkarpiuk.recipemaster.api.models.RecipeDomainModel
 import com.oleksandrkarpiuk.recipemaster.data.stores.recipe.RecipeDatabaseStore
 import com.oleksandrkarpiuk.recipemaster.data.stores.recipe.RecipeRemoteStore
-import com.oleksandrkarpiuk.recipemaster.mapping.toDatabaseRecipe
-import com.oleksandrkarpiuk.recipemaster.mapping.toRecipe
+import com.oleksandrkarpiuk.recipemaster.mapping.recipe.RecipeDatabaseMapper
+import com.oleksandrkarpiuk.recipemaster.mapping.recipe.RecipeSingleMapper
 import com.oleksandrkarpiuk.recipemaster.models.*
 import com.oleksandrkarpiuk.recipemaster.models.categories.Cuisine
 import com.oleksandrkarpiuk.recipemaster.models.categories.Diet
 import com.oleksandrkarpiuk.recipemaster.models.categories.MealType
+import com.oleksandrkarpiuk.recipemaster.models.recipes.CategoryItem
+import com.oleksandrkarpiuk.recipemaster.models.recipes.RecipeSingleModel
 import com.oleksandrkarpiuk.recipemaster.utils.SpoonacularTags
 import com.oleksandrkarpiuk.recipemaster.utils.StringProvider
 
 class RecipeRepositoryImpl(
     private val recipeRemoteStore: RecipeRemoteStore,
     private val recipeDatabaseStore: RecipeDatabaseStore,
-    private val stringProvider: StringProvider
+    private val stringProvider: StringProvider,
+    private val recipeDatabaseMapper: RecipeDatabaseMapper,
+    private val recipeSingleMapper: RecipeSingleMapper
 ) : RecipeRepository {
 
-    override suspend fun getRandomRecipes(number: Int, tags: String): Result<List<Recipe>, Throwable> {
+    override suspend fun getRandomRecipes(number: Int, tags: String): Result<List<RecipeDomainModel>, Throwable> {
         val resultApi = recipeRemoteStore.getRandomRecipes(number, tags)
         if(resultApi is Ok) {
-            for(recipe in resultApi.value) recipeDatabaseStore.saveRecipe(recipe.toDatabaseRecipe())
+            for(recipe in resultApi.value)
+                recipeDatabaseStore.saveRecipe(recipeDatabaseMapper.mapFromDomainToDatabase(recipe))
         }
         return resultApi
     }
 
-    override suspend fun saveRecipe(recipe: Recipe) {
-        recipeDatabaseStore.saveRecipe(recipe.toDatabaseRecipe())
+    override suspend fun saveRecipe(recipe: RecipeDomainModel) {
+        recipeDatabaseStore.saveRecipe(recipeDatabaseMapper.mapFromDomainToDatabase(recipe))
     }
 
-    override suspend fun getRecipeById(id: Int): Result<Recipe, Throwable> {
+    override suspend fun getRecipeById(id: Int): Result<RecipeSingleModel, Throwable> {
         val databaseResult = recipeDatabaseStore.getRecipeById(id)
-        return if(databaseResult is Ok) Ok(databaseResult.value.toRecipe())
+        return if(databaseResult is Ok) Ok(recipeSingleMapper.mapFromDatabaseToSingle(databaseResult.value))
         else Err(Throwable("Something went wrong"))
     }
 

@@ -2,12 +2,13 @@ package com.oleksandrkarpiuk.recipemaster.api.models
 
 import com.squareup.moshi.Json
 
-data class Recipe(
+data class RecipeDomainModel(
     @field:Json(name = "id") val id: Int,
     @field:Json(name = "title") val title: String,
     @field:Json(name = "spoonacularScore") val spoonacularScore: Int,
     @field:Json(name = "readyInMinutes") val readyInMinutes: Int,
     @field:Json(name = "servings") val servings: Int,
+    @field:Json(name = "pricePerServing") val pricePerServing: Float,
     @field:Json(name = "image") val imageUrl: String?,
     @field:Json(name = "summary") val summary: String,
     @field:Json(name = "cuisines") val cuisines: List<String>,

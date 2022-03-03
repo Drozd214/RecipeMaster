@@ -6,17 +6,19 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.github.michaelbull.result.Ok
 import com.oleksandrkarpiuk.recipemaster.R
-import com.oleksandrkarpiuk.recipemaster.api.models.Recipe
-import com.oleksandrkarpiuk.recipemaster.mapping.toRecipeItem
 import com.oleksandrkarpiuk.recipemaster.data.repositories.recipe.RecipeRepository
+import com.oleksandrkarpiuk.recipemaster.mapping.recipe.RecipeItemMapper
+import com.oleksandrkarpiuk.recipemaster.mapping.recipe.RecipeMapper
 import com.oleksandrkarpiuk.recipemaster.models.*
 import com.oleksandrkarpiuk.recipemaster.models.categories.Diet
+import com.oleksandrkarpiuk.recipemaster.models.recipes.RecipeItemModel
 import com.oleksandrkarpiuk.recipemaster.utils.StringProvider
 import kotlinx.coroutines.*
 
 class HomeViewModel(
     private val recipeRepository: RecipeRepository,
-    private val stringProvider: StringProvider
+    private val stringProvider: StringProvider,
+    private val recipeItemMapper: RecipeItemMapper
 ) : ViewModel() {
 
     private val categoryRecipesNumber = 10
@@ -69,12 +71,12 @@ class HomeViewModel(
         }
     }
 
-    private suspend fun loadRecipes(tag: String): List<RecipeItem> {
+    private suspend fun loadRecipes(tag: String): List<RecipeItemModel> {
         val recipes = CoroutineScope(Dispatchers.IO).async {
             val result = recipeRepository.getRandomRecipes(categoryRecipesNumber, tag)
             return@async if(result is Ok) {
                 val recipes = result.value
-                recipes.map(Recipe::toRecipeItem)
+                recipes.map(recipeItemMapper::mapFromDomainToItem)
             } else {
                 withContext(Dispatchers.Main) { _error.value = stringProvider.getString(R.string.unknown_error) }
                 listOf()
