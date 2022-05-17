@@ -11,5 +11,5 @@
     <item
         android:id="@+id/favourites_fragment"
         android:title="@string/favourites"
-        android:icon="@drawable/icon_heart"/>
+        android:icon="@drawable/icon_heart_active"/>
 </menu>

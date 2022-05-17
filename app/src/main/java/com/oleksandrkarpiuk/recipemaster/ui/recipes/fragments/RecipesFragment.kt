@@ -1,6 +1,5 @@
 package com.oleksandrkarpiuk.recipemaster.ui.recipes.fragments
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,13 +9,14 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
-import com.oleksandrkarpiuk.recipemaster.RecipeActivity
+import com.oleksandrkarpiuk.recipemaster.ui.recipe.RecipeActivity
 import com.oleksandrkarpiuk.recipemaster.RecipeMasterApplication
 import com.oleksandrkarpiuk.recipemaster.databinding.FragmentRecipesBinding
-import com.oleksandrkarpiuk.recipemaster.models.BaseRecipeItem
-import com.oleksandrkarpiuk.recipemaster.models.CategoryItem
-import com.oleksandrkarpiuk.recipemaster.models.RecipeItem
+import com.oleksandrkarpiuk.recipemaster.models.recipes.BaseRecipeItem
+import com.oleksandrkarpiuk.recipemaster.models.recipes.CategoryItem
+import com.oleksandrkarpiuk.recipemaster.models.recipes.RecipeItemModel
 import com.oleksandrkarpiuk.recipemaster.ui.base.BaseFragment
+import com.oleksandrkarpiuk.recipemaster.ui.recipe.newInstance
 import com.oleksandrkarpiuk.recipemaster.ui.recipes.RecipesContainerViewModel
 import com.oleksandrkarpiuk.recipemaster.ui.recipes.recycle.RecipesAdapter
 import javax.inject.Inject
@@ -66,10 +66,8 @@ class RecipesFragment(
         adapter = RecipesAdapter(recipes).apply {
             onItemClicked = { baseRecipeItem ->
                 when(baseRecipeItem) {
-                    is RecipeItem -> {
-                        startActivity(Intent(context, RecipeActivity::class.java).apply {
-                            putExtra("tagOrId", baseRecipeItem.id.toString())
-                        })
+                    is RecipeItemModel -> {
+                        startActivity(RecipeActivity.newInstance(requireContext(), baseRecipeItem.id))
                     }
                     is CategoryItem -> parentViewModel.refreshRecipes(baseRecipeItem.name, baseRecipeItem.tag)
                     else -> { }

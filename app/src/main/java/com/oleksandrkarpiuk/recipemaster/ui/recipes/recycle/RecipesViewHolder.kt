@@ -4,10 +4,11 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
 import com.oleksandrkarpiuk.recipemaster.databinding.ItemRecipeBinding
-import com.oleksandrkarpiuk.recipemaster.models.BaseRecipeItem
-import com.oleksandrkarpiuk.recipemaster.models.RecipeItem
+import com.oleksandrkarpiuk.recipemaster.models.recipes.BaseRecipeItem
+import com.oleksandrkarpiuk.recipemaster.models.recipes.RecipeItemModel
 
 class RecipesViewHolder(itemView: ItemRecipeBinding) : RecyclerView.ViewHolder(itemView.root) {
 
@@ -24,12 +25,13 @@ class RecipesViewHolder(itemView: ItemRecipeBinding) : RecyclerView.ViewHolder(i
         Glide.with(image)
             .load(item.imageUrl)
             .apply(RequestOptions.bitmapTransform(RoundedCorners(15)))
+            .transition(DrawableTransitionOptions.withCrossFade())
             .into(image)
         name.text = item.name
-        if(item is RecipeItem) {
-            score.text = "${item.score}%"
-            servings.text = "${item.servings}"
-            time.text = getTime(item.cookingTime)
+        if(item is RecipeItemModel) {
+            score.text = item.score
+            servings.text = item.servings.toString()
+            time.text = item.cookingTime
         } else {
             score.visibility = View.GONE
             servings.visibility = View.GONE
@@ -39,9 +41,4 @@ class RecipesViewHolder(itemView: ItemRecipeBinding) : RecyclerView.ViewHolder(i
         itemView.setOnClickListener { itemClickListener?.invoke(item) }
     }
 
-    private fun getTime(timeInMinutes: Int): String {
-        val hours = timeInMinutes / 60
-        val minutes = timeInMinutes % 60
-        return "${if(hours == 0) 0 else hours}h ${minutes}m"
-    }
 }

@@ -4,9 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.oleksandrkarpiuk.recipemaster.databinding.ItemRecipeBinding
-import com.oleksandrkarpiuk.recipemaster.models.BaseRecipeItem
-import com.oleksandrkarpiuk.recipemaster.models.RecipeItem
-import com.oleksandrkarpiuk.recipemaster.models.categories.BaseCategory
+import com.oleksandrkarpiuk.recipemaster.models.recipes.BaseRecipeItem
 
 class RecipesAdapter(
     var recipes: List<BaseRecipeItem>

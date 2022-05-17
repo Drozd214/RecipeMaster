@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="8dp"
     android:background="@color/item_background">
 
     <ProgressBar
@@ -23,6 +22,8 @@
         android:id="@+id/name_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="8dp"
         android:textColor="@color/white"
         android:textSize="18sp"
         android:textStyle="bold"
@@ -34,6 +35,8 @@
         android:id="@+id/see_all_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:background="?selectableItemBackground"
         android:text="@string/see_all"
         android:textColor="@color/see_all_color"
         android:textSize="14sp"
@@ -46,8 +49,11 @@
         android:id="@+id/recycle_view"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:paddingStart="8dp"
+        android:layout_marginBottom="8dp"
         android:minHeight="100dp"
         android:layout_marginTop="8dp"
+        android:clipToPadding="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

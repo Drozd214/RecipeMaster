@@ -1,5 +1,6 @@
 package com.oleksandrkarpiuk.recipemaster.models
 
+import com.oleksandrkarpiuk.recipemaster.models.recipes.BaseRecipeItem
 import java.io.Serializable
 
 class HomeCategoryItem(
