@@ -1,0 +1,42 @@
+<LinearLayout android:id="@+id/recipe_info_scrollView"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <com.oleksandrkarpiuk.recipemaster.ui.recipe.customview.SummaryCustomView
+        android:id="@+id/summary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <com.oleksandrkarpiuk.recipemaster.ui.recipe.customview.DetailsCustomView
+        android:id="@+id/details"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"/>
+
+    <com.oleksandrkarpiuk.recipemaster.ui.recipe.customview.DetailsCustomView
+        android:id="@+id/details1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"/>
+
+    <com.oleksandrkarpiuk.recipemaster.ui.recipe.customview.DetailsCustomView
+        android:id="@+id/details2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"/>
+
+    <com.oleksandrkarpiuk.recipemaster.ui.recipe.customview.DetailsCustomView
+        android:id="@+id/details3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"/>
+
+    <com.oleksandrkarpiuk.recipemaster.ui.recipe.customview.DetailsCustomView
+        android:id="@+id/details4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"/>
+</LinearLayout>

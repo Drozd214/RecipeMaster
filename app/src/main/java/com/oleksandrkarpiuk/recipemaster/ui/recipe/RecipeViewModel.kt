@@ -35,4 +35,14 @@ class RecipeViewModel(
         }
     }
 
+    fun onFavouriteClicked() {
+        viewModelScope.launch {
+            recipe.value?.let {
+                val updatedRecipe = it.copy(isFavourite = !it.isFavourite)
+                recipeRepository.updateRecipeFromApp(updatedRecipe)
+                _recipe.value = updatedRecipe
+            }
+        }
+    }
+
 }

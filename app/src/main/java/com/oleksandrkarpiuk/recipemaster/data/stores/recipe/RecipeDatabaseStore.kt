@@ -5,7 +5,8 @@ import com.oleksandrkarpiuk.recipemaster.database.models.RecipeDatabaseModel
 
 interface RecipeDatabaseStore {
 
-    suspend fun saveRecipe(recipe: RecipeDatabaseModel)
+    suspend fun saveRecipeFromDomaine(recipe: RecipeDatabaseModel)
+    suspend fun updateRecipeFromApp(recipe: RecipeDatabaseModel)
     suspend fun getRecipeById(id: Int): Result<RecipeDatabaseModel, Throwable>
 
 }

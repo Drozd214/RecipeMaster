@@ -23,6 +23,7 @@ data class RecipeDatabaseModel(
     @ColumnInfo(name = DIETS) val diets: List<String>,
     @ColumnInfo(name = INSTRUCTIONS) val instructions: List<Any>,
     @ColumnInfo(name = INGREDIENTS) val ingredients: List<Any>,
+    @ColumnInfo(name = FAVOURITE) val isFavourite: Boolean
 ) : Serializable {
 
     companion object {
@@ -40,6 +41,7 @@ data class RecipeDatabaseModel(
         const val DIETS = "diets"
         const val INSTRUCTIONS = "instructions"
         const val INGREDIENTS = "ingredients"
+        const val FAVOURITE = "is_favourite"
     }
 
 }

@@ -18,7 +18,7 @@ abstract class RecipeMasterDatabase : RoomDatabase() {
 
     companion object {
         const val NAME = "recipe_master_database.db"
-        const val VERSION = 2
+        const val VERSION = 3
     }
 
     abstract val recipeDao: RecipeDao

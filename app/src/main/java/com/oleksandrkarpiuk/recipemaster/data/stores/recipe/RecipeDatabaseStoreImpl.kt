@@ -10,7 +10,15 @@ class RecipeDatabaseStoreImpl(
     private val recipeDao: RecipeDao
 ) : RecipeDatabaseStore {
 
-    override suspend fun saveRecipe(recipe: RecipeDatabaseModel) {
+    override suspend fun saveRecipeFromDomaine(recipe: RecipeDatabaseModel) {
+        val databaseResult = getRecipeById(recipe.id)
+        val recipeForSave = if(databaseResult is Ok)
+            recipe.copy(isFavourite = databaseResult.value.isFavourite)
+            else recipe
+        recipeDao.insertRecipe(recipeForSave)
+    }
+
+    override suspend fun updateRecipeFromApp(recipe: RecipeDatabaseModel) {
         recipeDao.insertRecipe(recipe)
     }
 

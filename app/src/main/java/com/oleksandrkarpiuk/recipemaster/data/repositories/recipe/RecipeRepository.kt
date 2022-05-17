@@ -10,6 +10,7 @@ interface RecipeRepository {
 
     suspend fun getRandomRecipes(number: Int, tags: String): Result<List<RecipeDomainModel>, Throwable>
     suspend fun saveRecipe(recipe: RecipeDomainModel)
+    suspend fun updateRecipeFromApp(recipe: RecipeSingleModel)
     suspend fun getRecipeById(id: Int): Result<RecipeSingleModel, Throwable>
 
     fun getHomeCategories(): List<HomeCategoryItem>

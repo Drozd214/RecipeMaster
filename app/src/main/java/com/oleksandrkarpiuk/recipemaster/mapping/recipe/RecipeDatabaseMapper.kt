@@ -7,5 +7,6 @@ import com.oleksandrkarpiuk.recipemaster.models.recipes.RecipeSingleModel
 interface RecipeDatabaseMapper {
 
     fun mapFromDomainToDatabase(recipe: RecipeDomainModel): RecipeDatabaseModel
+    fun mapFromSingleToDatabase(recipe: RecipeSingleModel): RecipeDatabaseModel
 
 }

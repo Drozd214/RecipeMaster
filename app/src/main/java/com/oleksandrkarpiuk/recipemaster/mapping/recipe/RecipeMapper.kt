@@ -26,7 +26,27 @@ class RecipeMapper :
             mealTypes = recipe.dishTypes,
             diets = recipe.diets,
             instructions = recipe.analyzedInstructions,
-            ingredients = recipe.extendedIngredients
+            ingredients = recipe.extendedIngredients,
+            isFavourite = false
+        )
+    }
+
+    override fun mapFromSingleToDatabase(recipe: RecipeSingleModel): RecipeDatabaseModel {
+        return RecipeDatabaseModel(
+            id = recipe.id,
+            name = recipe.name,
+            score = recipe.score.toInt(),
+            cookingTime = recipe.cookingTime.toInt(),
+            servings = recipe.servings,
+            pricePerServing = recipe.price / recipe.servings,
+            imageUrl = recipe.imageUrl,
+            summary = recipe.summary,
+            cuisines = recipe.cuisines,
+            mealTypes = recipe.mealTypes,
+            diets = recipe.diets,
+            instructions = recipe.instructions,
+            ingredients = recipe.ingredients,
+            isFavourite = recipe.isFavourite
         )
     }
 
@@ -37,7 +57,7 @@ class RecipeMapper :
             id = recipe.id,
             score = "${recipe.spoonacularScore}%",
             servings = recipe.servings,
-            cookingTime = calculateTime(recipe.readyInMinutes),
+            cookingTime = calculateTimeFromMinutes(recipe.readyInMinutes),
         )
     }
 
@@ -45,8 +65,8 @@ class RecipeMapper :
         return RecipeSingleModel(
             id = recipe.id,
             name = recipe.name,
-            score = "${recipe.score}%",
-            cookingTime = calculateTime(recipe.cookingTime),
+            score = recipe.score,
+            cookingTime = recipe.cookingTime,
             servings = recipe.servings,
             price = calculatePrice(recipe.pricePerServing, recipe.servings),
             imageUrl = recipe.imageUrl,
@@ -55,11 +75,12 @@ class RecipeMapper :
             mealTypes = recipe.mealTypes,
             diets = recipe.diets,
             instructions = recipe.instructions,
-            ingredients = recipe.ingredients
+            ingredients = recipe.ingredients,
+            isFavourite = recipe.isFavourite
         )
     }
 
-    private fun calculateTime(timeInMinutes: Int): String {
+    private fun calculateTimeFromMinutes(timeInMinutes: Int): String {
         val hours = timeInMinutes / 60
         val minutes = timeInMinutes % 60
         return "${if(hours == 0) 0 else hours}h ${minutes}m"

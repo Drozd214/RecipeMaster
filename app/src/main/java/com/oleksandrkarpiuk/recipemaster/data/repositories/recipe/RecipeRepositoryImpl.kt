@@ -30,13 +30,17 @@ class RecipeRepositoryImpl(
         val resultApi = recipeRemoteStore.getRandomRecipes(number, tags)
         if(resultApi is Ok) {
             for(recipe in resultApi.value)
-                recipeDatabaseStore.saveRecipe(recipeDatabaseMapper.mapFromDomainToDatabase(recipe))
+                recipeDatabaseStore.saveRecipeFromDomaine(recipeDatabaseMapper.mapFromDomainToDatabase(recipe))
         }
         return resultApi
     }
 
     override suspend fun saveRecipe(recipe: RecipeDomainModel) {
-        recipeDatabaseStore.saveRecipe(recipeDatabaseMapper.mapFromDomainToDatabase(recipe))
+        recipeDatabaseStore.saveRecipeFromDomaine(recipeDatabaseMapper.mapFromDomainToDatabase(recipe))
+    }
+
+    override suspend fun updateRecipeFromApp(recipe: RecipeSingleModel) {
+        recipeDatabaseStore.updateRecipeFromApp(recipeDatabaseMapper.mapFromSingleToDatabase(recipe))
     }
 
     override suspend fun getRecipeById(id: Int): Result<RecipeSingleModel, Throwable> {

@@ -6,4 +6,5 @@ class CategoryItem(
     imageUrl: String?,
     name: String,
     val tag: String
-) : BaseRecipeItem(imageUrl, name), Serializable
+) : BaseRecipeItem(imageUrl, name), Serializable {
+}
