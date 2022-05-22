@@ -5,6 +5,7 @@ import com.oleksandrkarpiuk.recipemaster.di.modules.core.CoreModule
 import com.oleksandrkarpiuk.recipemaster.di.modules.core.subcomponents.activities.MainComponent
 import com.oleksandrkarpiuk.recipemaster.di.modules.core.subcomponents.activities.RecipeComponent
 import com.oleksandrkarpiuk.recipemaster.di.modules.core.subcomponents.activities.RecipesContainerComponent
+import com.oleksandrkarpiuk.recipemaster.di.modules.core.subcomponents.fragments.FavouritesComponent
 import com.oleksandrkarpiuk.recipemaster.di.modules.core.subcomponents.fragments.HomeComponent
 import com.oleksandrkarpiuk.recipemaster.di.modules.core.subcomponents.fragments.RecipesComponent
 import com.oleksandrkarpiuk.recipemaster.di.modules.data.DataModule
@@ -31,6 +32,8 @@ interface RecipeMasterAppComponent {
     fun createRecipeComponent(): RecipeComponent.Factory
 
     fun createHomeComponent(): HomeComponent.Factory
+    fun createFavouritesComponent(): FavouritesComponent.Factory
+
     fun createRecipesComponent(): RecipesComponent.Factory
 
 }

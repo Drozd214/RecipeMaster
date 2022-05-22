@@ -18,4 +18,7 @@ interface RecipeDao {
     @Query("SELECT * FROM ${RecipeDatabaseModel.TABLE_NAME} WHERE :id == id")
     fun getRecipeById(id: Int): RecipeDatabaseModel?
 
+    @Query("SELECT * FROM ${RecipeDatabaseModel.TABLE_NAME} WHERE ${RecipeDatabaseModel.FAVOURITE} = 1")
+    fun getFavouriteRecipes(): List<RecipeDatabaseModel>?
+
 }

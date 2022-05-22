@@ -11,7 +11,7 @@
 
     <fragment
         android:id="@+id/favourites_fragment"
-        android:name="com.oleksandrkarpiuk.recipemaster.ui.main.fragments.FavouritesFragment"
+        android:name="com.oleksandrkarpiuk.recipemaster.ui.main.fragments.favourites.FavouritesFragment"
         android:label="FavouritesFragment" />
 
     <fragment

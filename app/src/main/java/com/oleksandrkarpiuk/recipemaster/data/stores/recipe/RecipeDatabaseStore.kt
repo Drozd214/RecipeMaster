@@ -8,5 +8,6 @@ interface RecipeDatabaseStore {
     suspend fun saveRecipeFromDomaine(recipe: RecipeDatabaseModel)
     suspend fun updateRecipeFromApp(recipe: RecipeDatabaseModel)
     suspend fun getRecipeById(id: Int): Result<RecipeDatabaseModel, Throwable>
+    fun getFavouriteRecipes(): Result<List<RecipeDatabaseModel>, Throwable>
 
 }

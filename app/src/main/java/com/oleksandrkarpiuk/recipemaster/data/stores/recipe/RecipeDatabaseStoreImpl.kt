@@ -28,4 +28,10 @@ class RecipeDatabaseStoreImpl(
         else Ok(databaseRecipe)
     }
 
+    override fun getFavouriteRecipes(): Result<List<RecipeDatabaseModel>, Throwable> {
+        val databaseFavouriteRecipes = recipeDao.getFavouriteRecipes()
+        return if(databaseFavouriteRecipes == null) Err(Throwable("Something went wrong"))
+        else Ok(databaseFavouriteRecipes)
+    }
+
 }

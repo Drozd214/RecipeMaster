@@ -49,6 +49,12 @@ class RecipeRepositoryImpl(
         else Err(Throwable("Something went wrong"))
     }
 
+    override fun getFavouriteRecipes(): Result<List<RecipeSingleModel>, Throwable> {
+        val databaseResult = recipeDatabaseStore.getFavouriteRecipes()
+        return if(databaseResult is Ok) Ok(databaseResult.value.map (recipeSingleMapper::mapFromDatabaseToSingle))
+        else Err(Throwable("Something went wrong"))
+    }
+
     override fun getHomeCategories(): List<HomeCategoryItem> {
         val diets = mutableListOf<CategoryItem>().apply {
             for(diet in Diet.values()) {

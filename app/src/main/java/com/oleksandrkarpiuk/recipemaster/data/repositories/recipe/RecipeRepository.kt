@@ -12,6 +12,7 @@ interface RecipeRepository {
     suspend fun saveRecipe(recipe: RecipeDomainModel)
     suspend fun updateRecipeFromApp(recipe: RecipeSingleModel)
     suspend fun getRecipeById(id: Int): Result<RecipeSingleModel, Throwable>
+    fun getFavouriteRecipes(): Result<List<RecipeSingleModel>, Throwable>
 
     fun getHomeCategories(): List<HomeCategoryItem>
 
